@@ -1,0 +1,150 @@
+\documentclass[a4paper]{article}
+
+% Import some useful packages
+\usepackage[margin=0.5in]{geometry} % narrow margins
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{minted}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\definecolor{LightGray}{gray}{0.95}
+
+\title{Peer-review of assignment 4 for \textit{INF3331-ReviewedRepoName - replace this with repository name}}
+\author{Reviewer 1, fridtjal, fridtjal@ulrik.uio.no \\
+ 		Reviewer 2, berntjf, berntjf@student.matnat.uio.no \\}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\subsection{Goal}
+The review should provide feedback on the solution to the student. The main goal is to \emph{give constructive feedback and advice} on how to improve the solution. You, the peer-review team, can decide how you organise the peer-review work between you. 
+
+\subsection{Guidelines}\label{sec:general_review}
+For each (coding) exercise, one should review the following points:
+
+\begin{itemize}
+  \item Is the code \textbf{working as expected}? For non-internal functions (in particular for scripts that are run from the command-line), does the program handle invalid inputs sensibly?
+  \item Is the code \textbf{well documented}? Are there docstrings and are the useful?
+  \item Is the code written in \textbf{Pythonic way} \footnote{https://www.python.org/dev/peps/pep-0020/}? Is the code easy to read? Are the variable/class/function names sensible? Do you find overuse of classes or not sufficient use of functions or classes? Are there parts of the program that are hard to understand? 
+  \item Can you find \textbf{unnecessarily complicated parts} of the program? If so, suggest an improved implementation.
+  \item List the programming parts that are not answered.
+\end{itemize}
+Use (shortened) code snippets where appropriate to show how to improve the solution. 
+
+\subsection{Points}
+The review is completed by pushing the review Latex source file (.tex files) and the PDF files to each of the reviewed repositories. The name of the files should be \emph{feedback.tex} and \emph{feedback.pdf} in the students assignemnt4 directory.
+
+You will get up to 10 points for delivering the peer-reviews. Each of you should contribute to the review roughly equivalently - your team will get the same number of points\footnote{In case a team-member does not contribute, please email \href{mailto:simon@simula.no}{simon@simula.no}}. 
+
+
+
+\section{Review \emph{}}\label{sec:review}
+
+Review performed on ubuntu 16.04 and running python3.\\
+None of us are master students and don't really know how cython works.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{General feedback}
+Overall everything seems to work, some messy code that could have been cleaned up to make it look better.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.1}
+
+Tests could have been gathered in one file for more oversight, otherwise this looks fine.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.2} \label{sec:assignment5.2}
+
+Maybe put time capture and print outside of the function to not cause clutter if a function is called in a different setting, 
+
+\begin{minted}[bgcolor=LightGray, linenos, fontsize=\footnotesize]{python}
+
+for i in range(N+1):
+
+		I += delta_x*f(x2)
+		x += a + delta_x
+		#Calculating the midpoint x2
+		x2 = x - delta_x/2.
+
+\end{minted}
+
+The a-variable being added in every iteration of the loop could potentially cause errors if the starting point is not 0.
+
+Error plotting looks good
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.3}
+
+Dont use for loops when using numpy as the entire point of using numpy is to vectorize instead of looping. Same as before with time printing.
+Report seems fine and in line with your code 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.4}
+Numba implementation is not actually being compiled as numba but instead reverts back to numpy
+see piazza post from the 18th of september. 
+Conclusion in report is wrong, time is lost because the code is never compiled with numba and it spends time trying to compile it before it reverts back to standard python compilation
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.5}
+
+Task not finished? Seems like a good try but possibly trouble with compiling the file?
+From the report it seems like you managed to run cython while we did not manage this, maybe add a readme to explain.
+We are not master students so we did not need to do this task.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.6}
+
+Pure python \\
+same as in 4.2 with the the a variable being added in every iteration being unecessary, also if you do the following changes your code will look cleaner and shorter
+
+
+\begin{minted}[bgcolor=LightGray, linenos, fontsize=\footnotesize]{python}
+
+x = a + delta_x/2
+
+for i in range(N+1):
+
+		I += delta_x*f(x2)
+		x += delta_x
+		#Calculating the midpoint x2
+
+\end{minted}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+		
+	
+Numpy
+
+Same as in 4.3 where the assignment isn't vectorized, otherwise it looks good\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Numba
+
+Same as in 4.4 where the code isn't compiled as numba\\
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Should probably have made the integrator comparison test find actual numbers that they find the accurate numbers too see the difference in accuracy and also made use of the test functions written in previous tasks
+
+Report is in line with your code and experiences
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection*{Assignment 4.7}
+No packages are made
+
+
+\subsection*{Assignment 4.8}
+Not attempted
+
+
+
+\bibliographystyle{plain}
+\bibliography{literature}
+
+\end{document}

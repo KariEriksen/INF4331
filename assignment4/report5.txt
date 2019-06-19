@@ -1,0 +1,4 @@
+Report 5
+
+Cython speeds up the CPU time enormously. Between numpy and cython code the amount of time gained is 18 times the time numpy code takes to run for N=1000000. The same goes for N=2000000 and 4000000. But between the ordinary integrator python method and cython the cython code runs 46 times faster than  python. 
+

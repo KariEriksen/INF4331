@@ -1,0 +1,5 @@
+Report 3
+
+By changeing integration method from ordinary list operation to numpy we gain over twice the amount of time. Using N=1000000 for both method give CPU time=0.8934 sec. for ordinary method, and CPU time=0.3533 sec. Comparing with N=2000000 and N=4000000 shows the same.
+
+

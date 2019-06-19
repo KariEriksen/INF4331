@@ -1,0 +1,11 @@
+Report 6
+
+There is no doubt the midpoint method is much more accurate the the standard method used in the beginning. For the ordinary method we need N up to 500000 before the accuracy is at 10^(-10) where the midpoint method gives an accuracy at N=100000.
+
+This is also clear for numpy method, where the difference is much larger. For standard numpy the accuracy is gained at N=20.000.000 where as midpoint method reaches accuracy for only N=100000.
+
+The numba method shows exactly the same as numpy, which makes sense. The methods are quite similar.
+
+For the cython method something strange happens. For low N, and specific for N=5000000, the standard cython gives an accuracy at 10^(-10) and the midpoint method fail. But increasing N to 10.000.000 this changes. The midpoint method is accurate and the standard method fails. And then increasing again, to N=100.000.000 the change happens again. This I can not explain.
+
+But other than the cython code, the midpoint method saves us alot of CPU time by reaching an accurate value much faster than standard integration.

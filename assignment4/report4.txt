@@ -1,0 +1,3 @@
+Report 4
+
+When we implement numba in our method the time gained is actually lost. The program takes a little longer time, this may be because we call a new module in addition to the numpy module. Our program is quite small, just containing one for-loop. If the program was larger, the numba compile tool might work better.
